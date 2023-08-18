@@ -22,12 +22,12 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Enter data ingestion method or component")
         try:
-            df_mat=pd.read_csv("notebook/data/student-mat.csv", sep = ";")
+            df_mat=pd.read_csv("notebook/data/student-por.csv", sep = ";")
             logging.info("Read dataset as dataframe")
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
             df_mat.to_csv(self.ingestion_config.raw_data_path, index=False)
             
-            train_set,test_set=train_test_split(df_mat,test_size=0.2,random_state=42)
+            train_set,test_set=train_test_split(df_mat,test_size=0.2,random_state=64)
             
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
             
