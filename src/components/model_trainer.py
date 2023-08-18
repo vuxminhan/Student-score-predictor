@@ -17,7 +17,9 @@ from src.exception import CustomException
 from src.logger import logging
 
 from src.utils import save_object, evaluate_models
-
+from sklearn.model_selection import learning_curve
+from matplotlib import pyplot as plt
+import numpy as np
 
 @dataclass
 class ModelTrainerConfig:
@@ -111,6 +113,23 @@ class ModelTrainer:
             predicted = best_model.predict(X_test)
             
             r2 = r2_score(y_test, predicted)
+            train_sizes, train_scores, val_scores = learning_curve(
+                best_model, X_train, y_train, cv=5, scoring='r2', train_sizes=np.linspace(0.1, 1.0, 10)
+            )
+
+            # Plot learning curves
+            plt.figure(figsize=(10, 6))
+            plt.plot(train_sizes, train_scores.mean(axis=1), label='Training Score')
+            plt.plot(train_sizes, val_scores.mean(axis=1), label='Validation Score')
+            plt.xlabel("Training Set Size")
+            plt.ylabel("R2 Score")
+            plt.title("Learning Curves")
+            plt.legend()
+            plt.grid()
+            # Save the plot as an image file
+            plot_filename = "learning_curves.png"
+            plt.savefig(plot_filename)
+
             return r2
             
         except Exception as e:
