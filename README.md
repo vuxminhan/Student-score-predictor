@@ -106,6 +106,8 @@ Research Link :
 4. Flask App creation : 
     * Flask app is created with User Interface to predict the gemstone prices inside a Web Application.
 
+## Log
+![Log](screenshots/log.png)
 ## Exploratory Data Analysis Notebook
 
 Link : [EDA](<notebook/1. EDA STUDENT PERFORMANCE .ipynb>)

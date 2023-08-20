@@ -103,7 +103,6 @@ class ModelTrainer:
             #get model with best score
             best_model_name = max(model_report, key=model_report.get)
             best_model = models[best_model_name]
-            logging.info(f"Best model is {best_model}")
             
             save_object(
                 file_path=self.model_trainer_config.trained_model_path,
@@ -129,7 +128,7 @@ class ModelTrainer:
             # # Save the plot as an image file
             # plot_filename = "learning_curves.png"
             # plt.savefig(plot_filename)
-
+            logging.info(f"Best model is {best_model} r2 = {r2}")
             return r2
             
         except Exception as e:
