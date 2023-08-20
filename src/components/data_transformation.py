@@ -24,8 +24,8 @@ class DataTransformation:
 
     def get_data_transformation_object(self):
         try:
-            numerical_col = ['age', 'Medu', 'Fedu', 'traveltime', 'studytime', 'failures', 'famrel', 'freetime', 'goout', 'Dalc', 'Walc', 'health', 'absences', 'G1', 'G2', 'total', 'average_grade', 'Avg_Parent_Edu', 'Total_Alcohol', 'Grade_Improvement', 'Study_Efficiency', 'Avg_Daily_Absences']
-            categorical_col = ['school', 'sex', 'address', 'Mjob', 'Fjob', 'reason', 'guardian', 'schoolsup', 'activities', 'nursery', 'higher', 'internet', 'romantic', 'Age_Group', 'Internet_Studytime', 'Internet_Activities', 'School_Higher_Interaction', 'Parent_Job_Type']
+            numerical_col = ['age', 'traveltime', 'failures', 'famrel', 'goout', 'health', 'G1', 'G2', 'total', 'average_grade', 'Avg_Parent_Edu', 'Total_Alcohol', 'Grade_Improvement', 'Study_Efficiency', 'Avg_Daily_Absences']
+            categorical_col = ['sex', 'address', 'Mjob', 'Fjob', 'reason', 'guardian', 'schoolsup',  'nursery', 'romantic', 'Internet_Studytime', 'Internet_Activities', 'School_Higher_Interaction']
 
             num_pipeline = Pipeline(
                 steps=[

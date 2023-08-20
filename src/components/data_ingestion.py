@@ -31,27 +31,30 @@ class DataIngestion:
             df_mat['total'] = df_mat['G1'] + df_mat['G2']
             df_mat['average_grade'] = df_mat['total'] / 2
             df_mat['Avg_Parent_Edu'] = (df_mat['Medu'] + df_mat['Fedu']) / 2
-            df_mat['Parent_Job_Type'] = df_mat['Mjob'] + '_' + df_mat['Fjob']
+            # df_mat['Parent_Job_Type'] = df_mat['Mjob'] + '_' + df_mat['Fjob']
             df_mat['Total_Alcohol'] = df_mat['Dalc'] + df_mat['Walc']
             df_mat['Grade_Improvement'] = df_mat['G2'] - df_mat['G1']
             df_mat['Study_Efficiency'] = df_mat['studytime'] / df_mat['freetime']
             days_in_school_year = 180  # Example value, modify as needed
             df_mat['Avg_Daily_Absences'] = df_mat['absences'] / days_in_school_year
             df_mat['School_Higher_Interaction'] = df_mat['school'] + '_' + df_mat['higher']
-            age_bins = [15, 17, 20, 22]  # Example age groups, modify as needed
-            age_labels = ['15-17', '18-20', '21-22']
-            df_mat['Age_Group'] = pd.cut(df_mat['age'], bins=age_bins, labels=age_labels)
             df_mat['Internet_Studytime'] = df_mat['internet'] + '_' + df_mat['studytime'].astype(str)
             df_mat['Internet_Activities'] = df_mat['internet'] + '_' + df_mat['activities']
+            
+            cols_to_drop = ['Medu', 'Fedu', 'Dalc', 'Walc', 'studytime', 'freetime', 'absences', 'school', 'higher', 'internet', 'activities']
+            df_mat.drop(columns=cols_to_drop, inplace=True)
+            # 
+            
+            
             scaler = MinMaxScaler()
-            numeric_features = ['age', 'absences', 'G1', 'G2', 'total', 'average_grade', 'Avg_Parent_Edu', 'Total_Alcohol', 'Grade_Improvement', 'Study_Efficiency', 'Avg_Daily_Absences']
+            numeric_features = ['total', 'average_grade', 'Avg_Parent_Edu', 'Total_Alcohol', 'Grade_Improvement', 'Study_Efficiency', 'Avg_Daily_Absences']
             df_mat[numeric_features] = scaler.fit_transform(df_mat[numeric_features])
 
             logging.info("Read dataset as dataframe")
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
             df_mat.to_csv(self.ingestion_config.raw_data_path, index=False)
 
-            train_set, test_set = train_test_split(df_mat, test_size=0.2, random_state=42)
+            train_set, test_set = train_test_split(df_mat, test_size=0.2, random_state=89)
 
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
             test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
