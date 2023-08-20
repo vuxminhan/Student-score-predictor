@@ -18,8 +18,13 @@ from src.logger import logging
 
 from src.utils import save_object, evaluate_models
 from sklearn.model_selection import learning_curve
+<<<<<<< HEAD
 import numpy as np
 import matplotlib.pyplot as plt
+=======
+from matplotlib import pyplot as plt
+import numpy as np
+>>>>>>> alex-test
 
 @dataclass
 class ModelTrainerConfig:
@@ -129,6 +134,10 @@ class ModelTrainer:
             # Save the plot as an image file
             plot_filename = "learning_curves.png"
             plt.savefig(plot_filename)
+<<<<<<< HEAD
+=======
+
+>>>>>>> alex-test
             return r2
             
         except Exception as e:
