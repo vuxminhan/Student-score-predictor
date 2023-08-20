@@ -53,24 +53,57 @@ Research Link :
 
 1. Data Ingestion : 
     * In Data Ingestion phase the data is first read as csv. 
+    * Feature engineering measures were taken to improve data accuracy
+
+   1.1. *Categorical Variables Encoding:*
+   - Convert categorical variables like "school," "sex," "address," "famsize," "Pstatus," "Mjob," "Fjob," "reason," and "guardian" into       numerical values using techniques like one-hot encoding or label encoding.
+
+   1.2. *Combining Parental Education:*
+   - Create a new feature that represents the average of "Medu" (mother's education) and "Fedu" (father's education). This could potentially capture the overall educational background of the student's parents.
+
+   1.3. *Alcohol Consumption:*
+   - Combine "Dalc" (workday alcohol consumption) and "Walc" (weekend alcohol consumption) to create a new feature representing the overall alcohol consumption behavior. This might capture the student's attitude towards responsible behavior.
+
+   1.4. *Grade Improvement:*
+   - Create a new feature that represents the difference between "G2" and "G1." This could indicate how much a student's grade improved between the first and second periods.
+
+   1.5. *Study Efficiency:*
+   - Create a new feature that represents the ratio of "studytime" to "freetime." This could capture how effectively a student utilizes their free time for studying.
+
+   1.6. *Socialization Level:*
+   - Create a new feature by combining "goout" (going out with friends) and "freetime." This might represent the student's overall socialization level outside of school.
+
+   1.7. *Total Absences:*
+   - Combine "absences" with the number of school days to calculate the student's average daily absences. This might provide a more meaningful measure of absenteeism.
+
+   1.8. *Categorical Interaction:*
+   - Create interaction terms between pairs of categorical variables. For example, the combination of "school" and "higher" might indicate how much a student from a particular school aspires for higher education.
+
+   1.9  *Interaction with Internet Access:*
+    - Create features that represent interaction terms between "internet" access and other variables like "studytime" or "activities." This could capture how internet access affects study habits and extracurricular activities.
+    
+   1.10. *Total and average score:*
+    - 'G1' 'G2' is combined into total_score and devided by 2 to get average_score
+    
+   1.11.  *Feature Scaling:*
+    - Perform feature scaling (e.g., normalization or standardization) on numeric features like "age," "absences," "G1," "G2," etc. to ensure that all features have comparable scales.
     * Then the data is split into training and testing and saved as csv file.
 
-2. Data Transformation : 
+1. Data Transformation : 
     * In this phase a ColumnTransformer Pipeline is created.
     * for Numeric Variables first SimpleImputer is applied with strategy median , then Standard Scaling is performed on numeric data.
     * for Categorical Variables SimpleImputer is applied with most frequent strategy, then ordinal encoding performed , after this data is scaled with Standard Scaler.
     * This preprocessor is saved as pickle file.
 
-3. Model Training : 
+2. Model Training : 
     * In this phase base model is tested . The best model found was catboost regressor.
-    * After this hyperparameter tuning is performed on catboost and knn model.
-    * A final VotingRegressor is created which will combine prediction of catboost, xgboost and knn models.
+    * After this hyperparameter tuning is performed on catboost 
     * This model is saved as pickle file.
 
-4. Prediction Pipeline : 
+3. Prediction Pipeline : 
     * This pipeline converts given data into dataframe and has various functions to load pickle files and predict the final results in python.
 
-5. Flask App creation : 
+4. Flask App creation : 
     * Flask app is created with User Interface to predict the gemstone prices inside a Web Application.
 
 ## Exploratory Data Analysis Notebook
