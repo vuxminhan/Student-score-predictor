@@ -54,7 +54,7 @@ class DataIngestion:
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
             df_mat.to_csv(self.ingestion_config.raw_data_path, index=False)
 
-            train_set, test_set = train_test_split(df_mat, test_size=0.2, random_state=89)
+            train_set, test_set = train_test_split(df_mat, test_size=0.2, random_state=64)
 
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
             test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
