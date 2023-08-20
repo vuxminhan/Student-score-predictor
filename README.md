@@ -53,7 +53,7 @@ Research Link :
 
 1. Data Ingestion : 
     * In Data Ingestion phase the data is first read as csv. 
-    * Feature engineering measures were taken to improve data accuracy
+    * Feature engineering measures were taken to improve model accuracy
 
    1.1. *Categorical Variables Encoding:*
    - Convert categorical variables like "school," "sex," "address," "famsize," "Pstatus," "Mjob," "Fjob," "reason," and "guardian" into       numerical values using techniques like one-hot encoding or label encoding.
