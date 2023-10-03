@@ -104,7 +104,7 @@ Research Link :
     * This pipeline converts given data into dataframe and has various functions to load pickle files and predict the final results in python.
 
 4. Flask App creation : 
-    * Flask app is created with User Interface to predict the gemstone prices inside a Web Application.
+    * Flask app is created with User Interface to predict the score inside a Web Application.
 
 ## Log
 ![Log](screenshots/log.png)
